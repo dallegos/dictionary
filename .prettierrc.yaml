@@ -1,0 +1,7 @@
+singleQuote: true
+semi: true
+trailingComma: none
+bracketSameLine: true
+arrowParens: avoid
+endOfLine: auto
+printWidth: 150
