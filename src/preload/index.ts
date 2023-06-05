@@ -1,8 +1,15 @@
 import { contextBridge } from 'electron';
 import { electronAPI } from '@electron-toolkit/preload';
+import { FilesAndFolder, Fetch } from './helpers';
+
+// Init FilesAndFolder helper
+FilesAndFolder.init();
 
 // Custom APIs for renderer
-const api = {};
+const api = {
+    fetchWord: Fetch.fetchWord,
+    wordsList: FilesAndFolder.getWordsLocallySavedList
+};
 
 // Use `contextBridge` APIs to expose Electron APIs to
 // renderer only if context isolation is enabled, otherwise

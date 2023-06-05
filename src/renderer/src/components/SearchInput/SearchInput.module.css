@@ -1,0 +1,25 @@
+.inputContainer,
+.resultsContainer {
+    width: 100%;
+    max-width: 776px;
+    margin: 0 auto;
+    margin-bottom: 32px;
+}
+
+.inputContainer {
+    position: sticky;
+    top: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 2rem;
+    background-color: var(--white);
+}
+
+.inputContainer input {
+    box-shadow: var(--box-shadow-inactive);
+    transition: box-shadow 0.2s ease, opacity 0.2s ease;
+    border: var(--borderSize) solid var(--gray-3);
+    padding: 12px 24px;
+    box-shadow: var(--box-shadow-inactive);
+}

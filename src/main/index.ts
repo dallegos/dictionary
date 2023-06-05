@@ -7,7 +7,9 @@ function createWindow(): void {
     // Create the browser window.
     const mainWindow = new BrowserWindow({
         title: 'Mi app',
-        width: 620,
+        minWidth: 620,
+        minHeight: 700,
+        width: 700,
         height: 800,
         show: false,
         autoHideMenuBar: true,
@@ -15,10 +17,7 @@ function createWindow(): void {
         webPreferences: {
             preload: join(__dirname, '../preload/index.js'),
             sandbox: false
-        },
-        fullscreenable: false,
-        resizable: false,
-        titleBarStyle: 'hiddenInset'
+        }
     });
 
     mainWindow.on('ready-to-show', () => {
@@ -40,8 +39,6 @@ function createWindow(): void {
 
     // Open DevTools at the beginning
     mainWindow.webContents.openDevTools();
-
-    console.log('ASD: ', import.meta.env);
 }
 
 // This method will be called when Electron has finished

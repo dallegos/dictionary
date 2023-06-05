@@ -1,0 +1,106 @@
+@font-face {
+    font-family: Lora;
+    src: url('./../fonts/Lora/Lora-VariableFont_wght.ttf') format('truetype');
+    font-style: normal;
+    font-weight: 300 800;
+}
+
+@font-face {
+    font-family: Lora;
+    src: url('./../fonts/Lora/Lora-Italic-VariableFont_wght.ttf') format('truetype');
+    font-style: italic;
+    font-weight: 300 800;
+}
+
+@font-face {
+    font-family: Geologica;
+    src: url('./../fonts/Geologica/Geologica-VariableFont.ttf') format('truetype');
+    font-style: normal;
+    font-weight: 300 800;
+}
+
+@font-face {
+    font-family: PlayfairDisplay;
+    src: url('./../fonts/Playfair_Display/PlayfairDisplay-VariableFont_wght.ttf') format('truetype');
+    font-style: normal;
+    font-weight: 300 800;
+}
+
+@font-face {
+    font-family: PlayfairDisplay;
+    src: url('./../fonts/Playfair_Display/PlayfairDisplay-Italic-VariableFont_wght.ttf') format('truetype');
+    font-style: italic;
+    font-weight: 300 800;
+}
+
+/** ---------------------------------------- **/
+
+:root {
+    --backgroundColor: white;
+    --fontFamilyDefault: 'VT323', monospace;
+    --gap: 12px;
+    --blockSize: 32px;
+    --box-size: calc(var(--blockSize) * 8);
+    --borderSize: 2px;
+    --gray-1: rgba(50, 50, 50, 0.1);
+    --gray-2: rgba(0, 0, 0, 0.2);
+    --gray-3: rgba(0, 0, 0, 0.9);
+    --black: #2e2e2e;
+    --white: #e8e5de;
+    --green: #097761;
+    --box-shadow-inactive: 6px 6px 0px 0px var(--gray-1);
+    --box-shadow-active: 3px 3px 0px 0px var(--gray-1);
+    --box-shadow-super-active: 9px 9px 0px 0px var(--gray-1);
+}
+
+@media (prefers-color-scheme: light) {
+    :root {
+        --bg: #161618;
+        --bgTint: #27272c;
+        --textColor: #dbd7db;
+        --bgGrey: #27272c;
+        --textColorInverse: #0e0f0f;
+    }
+}
+
+/** ---------------------------------------- **/
+
+* {
+    user-select: none;
+    font-family: 'PlayfairDisplay', serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'PlayfairDisplay', serif;
+    color: var(--black);
+    font-size: 3rem;
+    font-weight: bolder;
+}
+
+p {
+    font-family: 'PlayfairDisplay', sans-serif;
+    color: #a647f1;
+}
+
+body {
+    background-color: var(--white);
+}
+
+body::-webkit-scrollbar {
+    width: 6px;
+}
+
+body::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 12px var(--gray-1);
+    outline: 1px solid var(--gray-1);
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: var(--black);
+    outline: 1px solid var(--black);
+}
