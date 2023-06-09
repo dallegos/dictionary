@@ -1,6 +1,6 @@
-// import Versions from './components/Versions';
-import { SearchInput } from '..';
-import { SearchProvider } from '../../contexts';
+import { ConfigurationProvider, SearchProvider, ToastProvider } from '../../contexts';
+import { Results } from '../Results';
+import { SearchBar } from '../SearchBar';
 import styles from './App.module.css';
 
 /**
@@ -9,15 +9,15 @@ import styles from './App.module.css';
  */
 export function App(): JSX.Element {
     return (
-        <SearchProvider>
-            <div className={styles.appContainer}>
-                <SearchInput />
-
-                {/* <Versions></Versions> */}
-                {/* <h1>keyboard</h1>
-
-                <p>/ˈkiːbɔːd/</p> */}
-            </div>
-        </SearchProvider>
+        <ToastProvider>
+            <ConfigurationProvider>
+                <SearchProvider>
+                    <div className={styles.appContainer}>
+                        <SearchBar />
+                        <Results />
+                    </div>
+                </SearchProvider>
+            </ConfigurationProvider>
+        </ToastProvider>
     );
 }

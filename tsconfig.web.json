@@ -5,7 +5,8 @@
     "src/renderer/src/**/*",
     "src/renderer/src/**/*.tsx",
     "src/preload/*.d.ts",
-    "src/interfaces"
+    "src/interfaces",
+    "src/utils"
   ],
   "compilerOptions": {
     "target": "es5",
@@ -15,10 +16,7 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-
     "baseUrl": "./src",
-    //"baseUrl": ".",
-
     "composite": true,
     "jsx": "react-jsx",
     "skipLibCheck": true,

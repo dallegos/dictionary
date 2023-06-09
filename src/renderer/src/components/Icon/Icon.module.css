@@ -1,0 +1,13 @@
+.icon {
+    display: inline-block;
+}
+
+.icon svg {
+    display: block;
+    height: var(--icon-size);
+}
+
+.icon svg path {
+    fill: var(--icon-fill-color);
+    stroke: var(--icon-stroke-color);
+}

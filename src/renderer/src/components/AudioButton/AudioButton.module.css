@@ -1,0 +1,4 @@
+.audioContainer span {
+    color: var(--black);
+    cursor: pointer;
+}

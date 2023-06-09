@@ -1,0 +1,14 @@
+.missingContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 300px;
+    padding: 0 70px;
+    text-align: center;
+}
+
+.missingContainer span {
+    color: var(--black);
+    margin-bottom: 24px;
+}

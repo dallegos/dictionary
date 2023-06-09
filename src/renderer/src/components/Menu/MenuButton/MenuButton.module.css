@@ -1,0 +1,41 @@
+.button span {
+    --distance: 8px;
+    --size: 32px;
+    --pseudoElementsSize: var(--size);
+
+    display: block;
+    height: 2px;
+    background-color: var(--white);
+    width: var(--size);
+    position: relative;
+}
+
+.button span:after,
+.button span:before {
+    content: '';
+    position: absolute;
+    height: 2px;
+    background-color: var(--white);
+    width: var(--pseudoElementsSize);
+    transition: width 0.2s ease, transform 0.2s ease;
+}
+
+.button span:after {
+    top: var(--distance);
+}
+
+.button span:before {
+    bottom: var(--distance);
+}
+
+.button.opened span {
+    --pseudoElementsSize: 12px;
+}
+
+.button.opened span:after {
+    transform: rotate(45deg) translate(-4px, -2px);
+}
+
+.button.opened span:before {
+    transform: rotate(-45deg) translate(-4px, 2px);
+}

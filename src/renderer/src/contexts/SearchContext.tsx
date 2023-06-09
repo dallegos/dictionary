@@ -1,7 +1,18 @@
-import { createContext, PropsWithChildren, useContext, useState } from 'react';
+import { SearchResult } from 'interfaces';
+import { createContext, Dispatch, PropsWithChildren, useCallback, useContext, useEffect, useState } from 'react';
+import { getErrorMessage } from '../../../utils';
+import { useConfiguration } from './ConfigurationContext';
 
 interface SearchContextPayload {
-    search: never[];
+    word: string;
+    results: SearchResult[] | undefined;
+    wordsList: string[];
+    isLoading: boolean;
+    error?: string;
+    setWord: Dispatch<React.SetStateAction<string>>;
+    searchWord: () => void;
+    clear: () => void;
+    getAudioSource: () => string | undefined;
 }
 
 const SearchContext = createContext<SearchContextPayload>({} as SearchContextPayload);
@@ -10,9 +21,81 @@ const SearchContext = createContext<SearchContextPayload>({} as SearchContextPay
  * Search context provider
  */
 export function SearchProvider(props: PropsWithChildren<unknown>): JSX.Element {
-    const [search, setSearch] = useState([]);
+    const [word, setWord] = useState<string>('');
+    const [results, setResults] = useState<SearchResult[]>();
+    const [wordsList, setWordsList] = useState<string[]>([]);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [error, setError] = useState<string>();
 
-    return <SearchContext.Provider value={{ search }}>{props.children}</SearchContext.Provider>;
+    /**
+     *
+     */
+    async function searchWord(): Promise<void> {
+        if (!word) return;
+        setIsLoading(true);
+        setError(undefined);
+        setResults([]);
+
+        try {
+            const response = await window.api.fetchWord(word.trim());
+            setResults(response);
+        } catch (error) {
+            //throw new Error();
+            setError(getErrorMessage(error));
+        } finally {
+            setIsLoading(false);
+        }
+    }
+
+    function clear(): void {
+        setWord('');
+        setError(undefined);
+        setResults([]);
+    }
+
+    /**
+     *
+     */
+    const getAudioSource = useCallback((): string | undefined => {
+        if (!results) return;
+
+        const audioSource = results
+            .find(res => res.phonetics.length)
+            ?.phonetics.find(phonetic => phonetic.audio.includes('-us') || phonetic.audio.includes('-uk'));
+
+        return audioSource?.audio;
+    }, [results]);
+
+    /**
+     *
+     */
+    useEffect(() => {
+        (async () => {
+            const wordsList = await window.api.wordsList();
+            setWordsList(wordsList);
+        })();
+    }, [results]);
+
+    useEffect(() => {
+        //console.log('wordsList', wordsList);
+    }, [wordsList]);
+
+    return (
+        <SearchContext.Provider
+            value={{
+                word,
+                results,
+                wordsList,
+                isLoading,
+                error,
+                setWord,
+                searchWord,
+                clear,
+                getAudioSource
+            }}>
+            {props.children}
+        </SearchContext.Provider>
+    );
 }
 
 /**

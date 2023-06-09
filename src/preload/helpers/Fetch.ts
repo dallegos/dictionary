@@ -1,21 +1,26 @@
 const fetch = require('node-fetch');
+
 import { SearchResult, SearchResultNotFound } from '../../interfaces';
-import { getErrorMessage } from './Errors';
+import { getErrorMessage } from '../../utils/errors';
 import { FilesAndFolder } from './FilesAndFolders';
 
 interface FetchPayload {
     fetchWord: (word: string) => Promise<SearchResult[]>;
 }
 
+const PRELOAD_VITE_API_URL = 'https://api.dictionaryapi.dev/api';
+const PRELOAD_VITE_API_VERSION = '/v2';
+const PRELOAD_VITE_API_ENDPOINT = '/entries/en/';
+
 /**
  *
  */
 export const Fetch = ((): FetchPayload => {
-    const defaultURL = import.meta.env.PRELOAD_VITE_API_URL + import.meta.env.PRELOAD_VITE_API_VERSION + import.meta.env.PRELOAD_VITE_API_ENDPOINT;
+    const defaultURL = PRELOAD_VITE_API_URL + PRELOAD_VITE_API_VERSION + PRELOAD_VITE_API_ENDPOINT;
     let searchedWord = '';
 
     async function fetchWord(word: string): Promise<SearchResult[]> {
-        searchedWord = word;
+        searchedWord = word.toLowerCase();
 
         try {
             const wordExistsLocally = await FilesAndFolder.findFileByName(searchedWord);

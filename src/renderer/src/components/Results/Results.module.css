@@ -1,0 +1,40 @@
+.resultsContainer {
+    padding: 12px 24px 0;
+}
+
+.resultsContainer section {
+    display: flex;
+    align-items: center;
+    margin-bottom: 24px;
+    gap: 12px;
+}
+
+.resultsContainer section h1 {
+    line-height: 3.6rem;
+}
+
+.resultsContainer section p {
+    font-size: 1.2rem;
+}
+
+.resultsContainer section div {
+    margin-left: auto;
+}
+
+.resultsContainer section p,
+.resultsContainer section span {
+    margin: 0;
+}
+
+.resultsContainer article {
+    border: var(--border-default);
+    padding: var(--padding-default);
+    margin-bottom: var(--padding-default);
+    box-shadow: var(--box-shadow-inactive);
+}
+
+.resultsContainer strong {
+    font-weight: bolder;
+    margin-bottom: 16px;
+    display: inline-block;
+}

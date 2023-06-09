@@ -3,9 +3,9 @@ const fs = require('fs');
 const path = require('path');
 const { readdir } = require('fs/promises');
 import { LocalDBSearchResult, SearchResult } from '../../interfaces';
-import { getErrorMessage } from './Errors';
+import { getErrorMessage } from '../../utils/errors';
 
-const FOLDER_NAME = import.meta.env.PRELOAD_VITE_DB_FOLDER;
+const FOLDER_NAME = '.dictionary';
 
 interface FilesAndFolderPayload {
     init: () => void;
@@ -45,7 +45,7 @@ export const FilesAndFolder = ((): FilesAndFolderPayload => {
         for (const file of files) {
             const filename = path.parse(file).name;
 
-            if (filename === name) {
+            if (filename === name.toLowerCase()) {
                 matchedFiles.push(file);
             }
         }
@@ -69,7 +69,7 @@ export const FilesAndFolder = ((): FilesAndFolderPayload => {
      */
     function getWord(word: string): SearchResult[] {
         try {
-            const data = fs.readFileSync(path.join(folder, `${word}.json`), 'utf8');
+            const data = fs.readFileSync(path.join(folder, `${word.toLowerCase()}.json`), 'utf8');
             return (JSON.parse(data) as LocalDBSearchResult).raw;
         } catch (error) {
             throw new Error(getErrorMessage(error));
@@ -83,9 +83,9 @@ export const FilesAndFolder = ((): FilesAndFolderPayload => {
      */
     function saveWord(word: string, data: SearchResult[]): void {
         fs.appendFile(
-            path.join(folder, `${word}.json`),
+            path.join(folder, `${word.toLowerCase()}.json`),
             JSON.stringify({
-                word,
+                word: word.toLowerCase(),
                 raw: data
             }),
             error => {

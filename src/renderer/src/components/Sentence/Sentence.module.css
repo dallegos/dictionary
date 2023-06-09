@@ -1,0 +1,9 @@
+.word {
+    background-color: transparent;
+    transition: background-color 0.1s ease;
+}
+
+.word:hover {
+    background-color: var(--gray-1);
+    cursor: pointer;
+}

@@ -37,10 +37,10 @@
 
 :root {
     --backgroundColor: white;
-    --fontFamilyDefault: 'VT323', monospace;
+    --fontFamilyDefault: 'PlayfairDisplay', serif;
     --gap: 12px;
+    --padding-default: 24px;
     --blockSize: 32px;
-    --box-size: calc(var(--blockSize) * 8);
     --borderSize: 2px;
     --gray-1: rgba(50, 50, 50, 0.1);
     --gray-2: rgba(0, 0, 0, 0.2);
@@ -48,9 +48,12 @@
     --black: #2e2e2e;
     --white: #e8e5de;
     --green: #097761;
+    --hoverBackground: #888888;
+    --hoverBackground-1: #444444;
     --box-shadow-inactive: 6px 6px 0px 0px var(--gray-1);
     --box-shadow-active: 3px 3px 0px 0px var(--gray-1);
     --box-shadow-super-active: 9px 9px 0px 0px var(--gray-1);
+    --border-default: var(--borderSize) solid var(--gray-3);
 }
 
 @media (prefers-color-scheme: light) {
@@ -82,13 +85,21 @@ h6 {
     font-weight: bolder;
 }
 
-p {
-    font-family: 'PlayfairDisplay', sans-serif;
-    color: #a647f1;
+ul {
+    padding-left: 16px;
+}
+
+p,
+li,
+span {
+    list-style: disc;
+    font-family: 'Lora', serif;
+    margin-bottom: 4px;
 }
 
 body {
     background-color: var(--white);
+    overflow-y: scroll;
 }
 
 body::-webkit-scrollbar {

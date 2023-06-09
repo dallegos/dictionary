@@ -1,0 +1,30 @@
+.headerContainer {
+    display: flex;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    font-size: 2rem;
+    gap: var(--gap);
+    background-color: var(--white);
+    padding: 12px 24px 0;
+}
+
+.headerContainer button {
+    display: flex;
+    width: 100px;
+    color: var(--white);
+    cursor: pointer;
+    background-color: var(--black);
+    justify-content: center;
+    align-items: center;
+    box-shadow: var(--box-shadow-inactive);
+    transition: box-shadow 0.2s ease, background-color 0.2s ease, color 0ms ease;
+    border: var(--borderSize) solid transparent;
+}
+
+.headerContainer button:hover {
+    box-shadow: var(--box-shadow-active);
+    background-color: var(--hoverBackground);
+    color: var(--white);
+    border-color: var(--black);
+}
