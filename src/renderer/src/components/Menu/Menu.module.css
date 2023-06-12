@@ -1,0 +1,83 @@
+.menuContainer {
+    position: fixed;
+    width: 100%;
+    left: 0;
+    top: 0;
+    height: 100%;
+    background-color: var(--black);
+    z-index: 1;
+    transform: translateX(-110%);
+    transition: transform 0.4s ease;
+    box-shadow: var(--box-shadow-inactive);
+    color: var(--white);
+    padding-top: 112px;
+}
+
+.menuContainer section {
+    margin-bottom: 88px;
+    text-align: center;
+}
+
+.menuContainer section h3 {
+    color: currentColor;
+    font-size: 2rem;
+    margin-bottom: 44px;
+}
+
+.menuContainer section input[type='range'] {
+    position: relative;
+    width: 300px;
+    display: block;
+    margin: 0 auto 24px;
+}
+
+.menuContainer section .volumeValue {
+    font-size: 1.4rem;
+}
+
+.menuContainer input[type='range']::-webkit-slider-runnable-track {
+    background-color: var(--white);
+    border-radius: 2px;
+    height: 2px;
+    cursor: pointer;
+}
+
+.menuContainer input[type='range']::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    margin-top: -6px;
+    background-color: var(--white);
+    height: 1rem;
+    width: 1rem;
+    border-radius: 50%;
+    border: 1px solid var(--black);
+    outline: 3px solid var(--black);
+}
+
+/* .menuContainer input[type='range']:focus::-webkit-slider-thumb {
+} */
+
+.menuContainer section div {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+}
+
+.menuContainer section div button {
+    border-color: var(--white);
+    box-shadow: var(--box-shadow-inactive-negative);
+    padding: 8px;
+    font-size: 1rem;
+}
+
+.menuContainer section div button:hover,
+.menuContainer section div button.selected {
+    border-color: var(--gray-4);
+    background-color: var(--white);
+    box-shadow: var(--box-shadow-active-negative);
+    color: var(--black);
+}
+
+.menuContainer.opened {
+    transform: translateX(0);
+}

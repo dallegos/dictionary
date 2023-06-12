@@ -2,6 +2,7 @@ export * from './App';
 export * from './AudioButton';
 export * from './Icon';
 export * from './Menu';
+export * from './MenuButton';
 export * from './NotFound';
 export * from './Results';
 export * from './SearchBar';

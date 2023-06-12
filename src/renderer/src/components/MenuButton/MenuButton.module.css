@@ -1,3 +1,8 @@
+.button {
+    position: relative;
+    z-index: 2;
+}
+
 .button span {
     --distance: 8px;
     --size: 32px;

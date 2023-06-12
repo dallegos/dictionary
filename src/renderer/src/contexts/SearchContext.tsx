@@ -1,5 +1,5 @@
-import { SearchResult } from 'interfaces';
 import { createContext, Dispatch, PropsWithChildren, useCallback, useContext, useEffect, useState } from 'react';
+import { SearchResult } from 'interfaces';
 import { getErrorMessage } from '../../../utils';
 import { useConfiguration } from './ConfigurationContext';
 
@@ -59,11 +59,8 @@ export function SearchProvider(props: PropsWithChildren<unknown>): JSX.Element {
     const getAudioSource = useCallback((): string | undefined => {
         if (!results) return;
 
-        const audioSource = results
-            .find(res => res.phonetics.length)
-            ?.phonetics.find(phonetic => phonetic.audio.includes('-us') || phonetic.audio.includes('-uk'));
-
-        return audioSource?.audio;
+        return results.find(res => res.phonetics.length)?.phonetics.find(phonetic => phonetic.audio.includes('-us') || phonetic.audio.includes('-uk'))
+            ?.audio;
     }, [results]);
 
     /**
@@ -79,6 +76,10 @@ export function SearchProvider(props: PropsWithChildren<unknown>): JSX.Element {
     useEffect(() => {
         //console.log('wordsList', wordsList);
     }, [wordsList]);
+
+    useEffect(() => {
+        console.log('isLoading', isLoading);
+    }, [isLoading]);
 
     return (
         <SearchContext.Provider

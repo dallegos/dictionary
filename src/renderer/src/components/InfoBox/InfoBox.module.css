@@ -1,15 +1,3 @@
-@keyframes color {
-    0% {
-        background: var(--black);
-    }
-    50% {
-        background: var(--hoverBackground-1);
-    }
-    100% {
-        background: var(--black);
-    }
-}
-
 .infoBoxContainer {
     position: fixed;
     bottom: 0;
@@ -28,16 +16,14 @@
     width: 100%;
     transition: box-shadow 0.2s ease, opacity 0.2s ease;
     border: var(--border-default);
+    border-color: var(--black);
     padding: 12px 24px;
     box-shadow: var(--box-shadow-inactive);
     background-color: var(--black);
-
-    background: var(--black); /* Fallback */
-    animation: color 1.4s infinite linear;
 }
 
-.infoBoxContainer > div > h3 {
+.infoBoxContainer > div > h5 {
     color: var(--white);
-    font-size: 1.4em;
+    font-size: 1.2em;
     font-weight: 400;
 }

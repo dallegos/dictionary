@@ -1,13 +1,25 @@
-import { SearchResult } from 'interfaces';
-import { createContext, Dispatch, PropsWithChildren, useCallback, useContext, useEffect, useState } from 'react';
-import { getErrorMessage } from '../../../utils';
+import { createContext, Dispatch, PropsWithChildren, useContext, useState } from 'react';
 
 interface AudioOptions {
     volume: number;
+    setVolume: Dispatch<React.SetStateAction<number>>;
 }
+
+interface FontOptions {
+    fontSize: string;
+    setFontSize: Dispatch<React.SetStateAction<string>>;
+}
+
+export const fontSizesMap = {
+    small: '12px',
+    normal: '16px',
+    large: '20px',
+    extra: '24px'
+};
 
 interface ConfigurationContextPayload {
     audio: AudioOptions;
+    font: FontOptions;
 }
 
 const ConfigurationContext = createContext<ConfigurationContextPayload>({} as ConfigurationContextPayload);
@@ -17,12 +29,18 @@ const ConfigurationContext = createContext<ConfigurationContextPayload>({} as Co
  */
 export function ConfigurationProvider(props: PropsWithChildren<unknown>): JSX.Element {
     const [volume, setVolume] = useState<number>(0.3);
+    const [fontSize, setFontSize] = useState<string>(fontSizesMap.normal);
 
     return (
         <ConfigurationContext.Provider
             value={{
                 audio: {
-                    volume
+                    volume,
+                    setVolume
+                },
+                font: {
+                    fontSize,
+                    setFontSize
                 }
             }}>
             {props.children}

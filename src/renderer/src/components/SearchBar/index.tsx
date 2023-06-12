@@ -1,9 +1,8 @@
 import { useSearch } from '../../contexts';
 import { SearchInput } from '../SearchInput';
 import { Icon } from '../Icon';
+import { MenuButton } from '../MenuButton';
 import styles from './SearchBar.module.css';
-import { MenuButton } from '../Menu';
-
 /**
  *
  * @returns

@@ -1,10 +1,10 @@
-import { useSearch } from '../../contexts';
-import { Definition, Meaning, SearchResult } from 'interfaces';
+import { fontSizesMap, useConfiguration, useSearch } from '../../contexts';
+import { Definition, MappedStyles, Meaning, SearchResult } from 'interfaces';
 import { NotFound } from '../NotFound';
 import { Sentence } from '../Sentence';
 import styles from './Results.module.css';
 import { AudioButton } from '../AudioButton';
-import { useInfoBox } from '../InfoBox';
+import { InfoBox } from '../InfoBox';
 
 /**
  *
@@ -12,31 +12,41 @@ import { useInfoBox } from '../InfoBox';
  */
 export function Results(): JSX.Element {
     const { results, error, isLoading, getAudioSource } = useSearch();
-    const { element } = useInfoBox();
+    const {
+        font: { fontSize }
+    } = useConfiguration();
 
     return (
-        <main className={styles.resultsContainer}>
-            {results?.length ? (
-                <>
-                    <section>
-                        <h1>{results[0].word}</h1>
-                        <p>{results[0].phonetic}</p>
+        <>
+            <main
+                className={styles.resultsContainer}
+                style={
+                    {
+                        '--font-size': fontSizesMap[fontSize]
+                    } as MappedStyles
+                }>
+                {results?.length ? (
+                    <>
+                        <section>
+                            <h1>{results[0].word}</h1>
+                            <p>{results[0].phonetic}</p>
 
-                        {getAudioSource() && <AudioButton />}
-                    </section>
+                            {getAudioSource() && <AudioButton />}
+                        </section>
 
-                    {results.map(
-                        (result: SearchResult, i: number): JSX.Element => (
-                            <ResultBlock result={result} key={`result-block-article-${i}`} />
-                        )
-                    )}
-                </>
-            ) : (
-                error && <NotFound message={error} />
-            )}
+                        {results.map(
+                            (result: SearchResult, i: number): JSX.Element => (
+                                <ResultBlock result={result} key={`result-block-article-${i}`} />
+                            )
+                        )}
+                    </>
+                ) : (
+                    error && <NotFound message={error} />
+                )}
+            </main>
 
-            {element}
-        </main>
+            <InfoBox show={!isLoading} title={'Searching...'} />
+        </>
     );
 }
 
