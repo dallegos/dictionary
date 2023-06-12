@@ -1,7 +1,6 @@
 import { createContext, Dispatch, PropsWithChildren, useCallback, useContext, useEffect, useState } from 'react';
 import { SearchResult } from 'interfaces';
 import { getErrorMessage } from '../../../utils';
-import { useConfiguration } from './ConfigurationContext';
 
 interface SearchContextPayload {
     word: string;
