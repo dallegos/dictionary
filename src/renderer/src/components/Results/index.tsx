@@ -1,10 +1,10 @@
 import { fontSizesMap, useConfiguration, useSearch } from '../../contexts';
 import { Definition, MappedStyles, Meaning, SearchResult } from 'interfaces';
 import { NotFound } from '../NotFound';
-import { Sentence } from '../Sentence';
-import styles from './Results.module.css';
+import { Sentence, Word } from '../Sentence';
 import { AudioButton } from '../AudioButton';
 import { InfoBox } from '../InfoBox';
+import styles from './Results.module.css';
 
 /**
  *
@@ -39,6 +39,17 @@ export function Results(): JSX.Element {
                                 <ResultBlock result={result} key={`result-block-article-${i}`} />
                             )
                         )}
+
+                        <p style={{ marginBottom: '16px' }}>
+                            Source:{' '}
+                            <a
+                                style={{ textDecoration: 'underline', fontWeight: 700 }}
+                                href={results[0].sourceUrls[0]}
+                                target="_blank"
+                                rel="noopener noreferrer">
+                                {results[0].sourceUrls[0]}
+                            </a>
+                        </p>
                     </>
                 ) : (
                     error && <NotFound message={error} />
@@ -74,9 +85,32 @@ function ResultBlock(props: ResultBlockProps): JSX.Element {
                                 )
                             )}
                         </ul>
+
+                        <Synonyms key={`synonyms-block-${i}`} words={meaning.synonyms} />
                     </article>
                 )
             )}
         </>
     );
+}
+
+interface SynonymsProps {
+    words: string[];
+}
+
+function Synonyms(props: SynonymsProps): JSX.Element | null {
+    return props.words.length ? (
+        <>
+            <h6>Synonyms</h6>
+            <ul className={styles.synonymsList}>
+                {props.words.map((word, i) => {
+                    return (
+                        <li key={`synonym-button-${i}`}>
+                            <Word text={word} last={true} />
+                        </li>
+                    );
+                })}
+            </ul>
+        </>
+    ) : null;
 }

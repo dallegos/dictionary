@@ -34,7 +34,7 @@ interface WordProps {
 /**
  *
  */
-function Word(props: WordProps): JSX.Element {
+export function Word(props: WordProps): JSX.Element {
     const [clicked, setClicked] = useState<boolean>();
     const { word, setWord, searchWord } = useSearch();
 

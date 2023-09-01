@@ -39,3 +39,32 @@
     margin-bottom: 16px;
     display: inline-block;
 }
+
+.resultsContainer h6 {
+    font-size: 16px;
+    margin: 24px 0 16px;
+}
+
+.resultsContainer .synonymsList {
+    padding: 0;
+}
+
+.resultsContainer .synonymsList li {
+    list-style: none;
+    display: inline;
+    margin-right: 4px;
+}
+
+.resultsContainer .synonymsList span {
+    border: 1px solid var(--black);
+    padding: 8px;
+    font-size: 1rem;
+    display: inline-block;
+    transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+.resultsContainer .synonymsList span:hover,
+.resultsContainer .synonymsList span.selected {
+    background-color: var(--black);
+    color: var(--white);
+}
